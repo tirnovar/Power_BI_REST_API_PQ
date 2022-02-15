@@ -8,7 +8,7 @@ There are two ways to create an application:
 1) Open Link: [Azure Active Directory](https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview)
 2) Manage -> App Registration
 3) New registration
-4) Fill form: </br>
+4) **Fill form:** </br>
     **Name: <your_app_name>**, </br>
     **Supported account type: <supported_acccount_type>** *(It depends on your intent. But mostly it will be: "Accounts in this organizational directory only (DataBrothers only - Single tenant)"*, </br>
     **Redirect URI: <select_platform> + <uri>** *(This doesnt have to be filled. But it is recommended to fill it. It will be used to redirect the user after the user has logged in. For example: "https://localhost:44300/signin-oidc")*, </br>
