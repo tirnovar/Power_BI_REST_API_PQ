@@ -9,9 +9,9 @@ There are two ways to create an application:
 2) Manage -> App Registration
 3) New registration
 4) Fill form: 
-    Name: <your_app_name>, 
-    Supported account type: <supported_acccount_type> (It depends on your intent. But mostly it will be: "Accounts in this organizational directory only (DataBrothers only - Single tenant)",
-    Redirect URI: <select_platform> + <uri> (This doesnt have to be filled. But it is recommended to fill it. It will be used to redirect the user after the user has logged in. For example: "https://localhost:44300/signin-oidc"),
+    Name: <your_app_name>, </p>
+    Supported account type: <supported_acccount_type> (It depends on your intent. But mostly it will be: "Accounts in this organizational directory only (DataBrothers only - Single tenant)", </p>
+    Redirect URI: <select_platform> + <uri> (This doesnt have to be filled. But it is recommended to fill it. It will be used to redirect the user after the user has logged in. For example: "https://localhost:44300/signin-oidc"), </p>
 
 ### App Registration Tool
 1) Open Link: [App Registration Tool](https://app.powerbi.com/embedsetup)
