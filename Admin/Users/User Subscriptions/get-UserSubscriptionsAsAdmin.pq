@@ -31,7 +31,7 @@ let
                                     result = apiCalling(uri, callInitStructure),
                                     uri = _[result][continuationUri]?
                                 ],
-                            each [result][subscriptionEntities]?
+                            each [result][SubscriptionEntities]?
                         )
                     ),
                 tbl =
