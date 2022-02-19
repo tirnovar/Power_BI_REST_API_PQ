@@ -34,19 +34,7 @@ let
                             each [result][SubscriptionEntities]?
                         )
                     ),
-                tbl =
-                    #table(
-                        type table [nestedList = list],
-                        List.Transform(generator, each
-                            {
-                                _
-                            })
-                    ),
-                expandList =
-                    Table.ExpandListColumn(
-                        tbl,
-                        "nestedList"
-                    ),
+                combined = List.Buffer(List.Union(generator)),
                 resultTable =
                     #table(
                         type table [
@@ -66,7 +54,7 @@ let
                             users = list
                         ],
                         List.Transform(
-                            List.RemoveNulls(expandList[nestedList]),
+                            List.RemoveNulls(combined),
                             each
                                 {
                                     _[id]?,
