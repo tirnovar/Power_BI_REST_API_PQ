@@ -31,19 +31,7 @@ let
                             each [result][ArtifactAccessEntities]?
                         )
                     ),
-                tbl =
-                    #table(
-                        type table [nestedList = list],
-                        List.Transform(generator, each
-                            {
-                                _
-                            })
-                    ),
-                expandList =
-                    Table.ExpandListColumn(
-                        tbl,
-                        "nestedList"
-                    )
+                union = List.Union(generator)
             in
                 #table(
                     type table [
@@ -59,7 +47,7 @@ let
                         sharer.principalType = text
                     ],
                     List.Transform(
-                        List.RemoveNulls(expandList[nestedList]),
+                        List.RemoveNulls(union),
                         each
                             {
                                 _[artifactId]?,
