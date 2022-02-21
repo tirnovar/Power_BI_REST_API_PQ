@@ -32,14 +32,24 @@ let
                             {
                                 _[id]?,
                                 _[displayName]?,
-                                Table.FromRecords(
-                                    _[stages]?,
-                                    type table [
-                                        order,
-                                        workspaceId,
-                                        workspaceName
-                                    ],
-                                    MissingField.UseNull
+                                Table.AddColumn(
+                                    Table.FromRecords(
+                                        _[stages]?,
+                                        type table [
+                                            order,
+                                            workspaceId,
+                                            workspaceName
+                                        ],
+                                        MissingField.UseNull
+                                    ),
+                                    "Type",
+                                    each
+                                        if [order] = "0" then
+                                            "Development"
+                                        else if [order] = "1" then
+                                            "Test"
+                                        else
+                                            "Production"
                                 ),
                                 Table.FromRecords(
                                     _[users]?,
