@@ -23,7 +23,8 @@ let
                     ],
                     Query = [
                         #"$expand" = "users,reports,dashboards,datasets,dataflows,workbooks",
-                        #"$top" = Text.From(counter)
+                        #"$top" = Text.From(counter),
+                        #"$filter" = "type eq 'Workspace'"
                     ]
                 ],
                 apiCall =
@@ -73,8 +74,8 @@ let
                     )
                 ),
     documentation = [
-        Documentation.Name = " get-GroupsAsAdmin.pq ",
-        Documentation.Description = " Get Groups in Power BI Service as Admin. (You will recieve max to 5000 groups. If you didnt input TOP number, then call will be on first 5000) ",
+        Documentation.Name = " get-WorkspacesAsAdminWithAllExpandables.pq ",
+        Documentation.Description = " Get ONLY Workspaces in Power BI Service as Admin. (You will recieve max to 5000 Workspaces. If you didnt input TOP number, then call will be on first 5000) ",
         Documentation.Source = "https://www.jaknapowerbi.cz",
         Documentation.Version = " 1.0 ",
         Documentation.Author = " Štěpán Rešl "
