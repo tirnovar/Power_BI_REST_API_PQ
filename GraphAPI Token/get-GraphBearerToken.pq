@@ -4,16 +4,13 @@ let
             let
                 out =
                     let
-                        token_uri =
-                            "https://login.windows.net/"
-                            & AzureADTenantID
-                            & "/oauth2/token",
                         resource = "https://graph.microsoft.com",
                         tokenResponse =
                             Json.Document(
                                 Web.Contents(
-                                    token_uri,
-                                    [
+                                "https://login.windows.net",
+                                [
+                                    RelativePath = AzureADTenantID & "/oauth2/token",
                                         Content =
                                             Text.ToBinary(
                                                 Uri.BuildQueryString(
