@@ -1,6 +1,6 @@
 let
     output =
-        (generatedToken as text) =>
+        (generatedToken as text,userPrincipalName as text) =>
             let
                 apiCall =
                     Json.Document(
@@ -10,7 +10,7 @@ let
                                 RelativePath = "informationProtection/policy/labels",
                                 Headers = [
                                     #"Content-Type" = "application/json",
-                                    #"User-Agent"="testuserPrincipal",
+                                    #"User-Agent"=userPrincipalName,
                                     Authorization = generatedToken
                                 ]
                             ]

@@ -47,7 +47,7 @@ Get | [Published To Web](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/m
 ### API Permissions: InformationProtectionPolicy.Read.All (GraphAPI)
 Method | Name | Description | Requirements
 ------ | ---- | ----------- | ------------
-Get | [Information Protections Labels](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/main/Information%20Protection/Labels/Get%20Labels/get-InfromationProtectionLabesl.pq) | Get All labels that can be used in your company | [GraphAPI - Bearer Token](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/main/GraphAPI%20Token/get-GraphBearerToken.pq)
+Get | [Information Protections Labels](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/main/Information%20Protection/Labels/Get%20Labels/get-InfromationProtectionLabels.pq) | Get All labels that can be used in your company | [GraphAPI - Bearer Token](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/main/GraphAPI%20Token/get-GraphBearerToken.pq)
 
 --> Sensitivity labes can on **Dataflow / Dataset / Report / Workbook / Dashboard** be find out by [Scan Results](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/main/ScannerAPI/Get%20Scanned%20Result/get-ScanResult.pq)
 
