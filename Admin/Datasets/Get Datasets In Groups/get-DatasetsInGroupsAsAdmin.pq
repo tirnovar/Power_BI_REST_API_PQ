@@ -47,7 +47,7 @@ let
                                 _[isOnPremGatewayRequired]?,
                                 _[webUrl]?,
                                 _[targetStorageMode]?,
-                                _[createdDate]?,
+                                DateTime.From(_[createdDate]?),
                                 _[createReportEmbedURL]?,
                                 _[qnaEmbedURL]?,
                                 _[upstreamDatasets]?
