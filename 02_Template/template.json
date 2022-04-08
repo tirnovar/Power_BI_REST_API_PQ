@@ -1,0 +1,126 @@
+{
+    "name": "template",
+    "description": "",
+    "version": "1.0",
+    "culture": "en-US",
+    "modifiedTime": "2022-04-06T08:18:26.1669126+00:00",
+    "pbi:mashup": {
+        "fastCombine": true,
+        "allowNativeQueries": false,
+        "queriesMetadata": {
+            "getDatasetsAsAdminWithoutUsers": {
+                "queryId": "14b47e47-1d02-42b2-90ec-ad09092ffbd5",
+                "queryName": "getDatasetsAsAdminWithoutUsers",
+                "queryGroupId": "dccfa199-76b4-4d25-93df-9ada689344b1"
+            },
+            "getPBIToken": {
+                "queryId": "7f0e748b-d26a-4c20-b0ed-c08fa4b25c7d",
+                "queryName": "getPBIToken",
+                "queryGroupId": "dccfa199-76b4-4d25-93df-9ada689344b1"
+            },
+            "token": {
+                "queryId": "e7ff5eb7-ab8c-43fe-b9ec-d81f50f6caa1",
+                "queryName": "token",
+                "queryGroupId": "049bbdbf-b41f-49d7-bd95-59695217d01d"
+            },
+            "output": {
+                "queryId": "e0655a6d-d0b1-4126-a75c-9cb7a2d829b8",
+                "queryName": "output",
+                "queryGroupId": "5817561b-5b90-4d5a-87f2-e31d1edc006f",
+                "loadEnabled": true
+            },
+            "getDatasetRefreshHistory": {
+                "queryId": "a146ed8a-907b-4a8e-90a7-562224582cf0",
+                "queryName": "getDatasetRefreshHistory",
+                "queryGroupId": "dccfa199-76b4-4d25-93df-9ada689344b1"
+            },
+            "TenantID": {
+                "queryId": "f621d3ad-0caf-47c8-807e-8b73506a2bb1",
+                "queryName": "TenantID",
+                "queryGroupId": "36e01dff-48d8-49b8-91c6-3b055548b9d0"
+            },
+            "ClientID": {
+                "queryId": "f6c4229c-eb33-4077-8199-3f18174d542e",
+                "queryName": "ClientID",
+                "queryGroupId": "36e01dff-48d8-49b8-91c6-3b055548b9d0"
+            },
+            "ClientSecret": {
+                "queryId": "a099d8ac-eeb9-4296-acac-9c9ef94f0ef0",
+                "queryName": "ClientSecret",
+                "queryGroupId": "36e01dff-48d8-49b8-91c6-3b055548b9d0"
+            }
+        },
+        "document": "section Section1;\r\nshared getDatasetsAsAdminWithoutUsers = let\n    Source = let\n    output =\n        (generatedToken as text) =>\n            let\n                apiCall =\n                    Json.Document(\n                        Web.Contents(\n                            \"https://api.powerbi.com/v1.0/myorg/admin\",\n                            [\n                                RelativePath = \"datasets\",\n                                Headers = [\n                                    #\"Content-Type\" = \"application/json\",\n                                    Authorization = generatedToken\n                                ]\n                            ]\n                        )\n                    )\n            in\n                #table(\n                    type table [\n                        id = text,\n                        name = text,\n                        addRowsAPIEnabled = logical,\n                        configuredBy = text,\n                        isRefreshable = logical,\n                        isEffectiveIdentityRequired = logical,\n                        isEffectiveIdentityRolesRequired = logical,\n                        isOnPremGatewayRequired = text,\n                        webUrl = text,\n                        targetStorageMode = text,\n                        createdDate = datetime,\n                        createReportEmbedURL = text,\n                        qnaEmbedURL = text,\n                        upstreamDatasets = list\n                    ],\n                    List.Transform(\n                        apiCall[value],\n                        each\n                            {\n                                _[id]?,\n                                _[name]?,\n                                _[addRowsAPIEnabled]?,\n                                _[configuredBy]?,\n                                _[isRefreshable]?,\n                                _[isEffectiveIdentityRequired]?,\n                                _[isEffectiveIdentityRolesRequired]?,\n                                _[isOnPremGatewayRequired]?,\n                                _[webUrl]?,\n                                _[targetStorageMode]?,\n                                DateTime.From(_[createdDate]?),\n                                _[createReportEmbedURL]?,\n                                _[qnaEmbedURL]?,\n                                _[upstreamDatasets]?\n                            }\n                    )\n                ),      \n    documentation = [\n        Documentation.Name = \" get-Capacities.pq \",\n        Documentation.Description = \" Get all capacities in tenant \",\n        Documentation.Source = \"https://www.jaknapowerbi.cz\",\n        Documentation.Version = \" 1.0 \",\n        Documentation.Author = \" Štěpán Rešl \"\n    ]\nin\n    Value.ReplaceType(\n        output,\n        Value.ReplaceMetadata(\n            Value.Type(output),\n            documentation\n        )\n    )\nin\n    Source;\r\nshared getPBIToken = let\n    output =\n        (AzureADTenantID as text, AzureApplicationClientSecret as text, AzureApplicationClientID as text) as text =>\n            let\n                resource = \"https://analysis.windows.net/powerbi/api\",\n                tokenResponse =\n                    Json.Document(\n                        Web.Contents(\n                            \"https://login.windows.net\",\n                            [\n                                RelativePath = AzureADTenantID & \"/oauth2/token\",\n                                Content =\n                                    Text.ToBinary(\n                                        Uri.BuildQueryString(\n                                            [\n                                                client_id = AzureApplicationClientID,\n                                                resource = resource,\n                                                grant_type = \"client_credentials\",\n                                                client_secret = AzureApplicationClientSecret\n                                            ]\n                                        )\n                                    ),\n                                Headers = [\n                                    Accept = \"application/json\"\n                                ],\n                                ManualStatusHandling = {\n                                    400\n                                }\n                            ]\n                        )\n                    ),\n                token_output =\n                    tokenResponse[token_type]\n                    & \" \"\n                    & tokenResponse[access_token]\n            in\n                token_output,\n    documentation = [\n        Documentation.Name = \" get-BearerToken.pq \",\n        Documentation.Description = \" Get Bearer Token needed for Power BI REST API calls \",\n        Documentation.Source = \"https://www.jaknapowerbi.cz\",\n        Documentation.Version = \" 1.0 \",\n        Documentation.Author = \" Štěpán Rešl \"\n    ]\nin\n    Value.ReplaceType(\n        output,\n        Value.ReplaceMetadata(\n            Value.Type(output),\n            documentation\n        )\n    );\r\nshared token = let\n    Source = getPBIToken(TenantID,ClientSecret,ClientID)\nin\n    Source;\r\nshared output = let\r\n  Source = getDatasetsAsAdminWithoutUsers(token),\r\n  #\"Remove columns\" = Table.RemoveColumns(Source, Table.ColumnsOfType(Source, {type table, type record, type list, type nullable binary, type binary, type function}))\r\nin\r\n  #\"Remove columns\";\r\nshared getDatasetRefreshHistory = let\n    Source = let\n    output =\n        (generatedToken as text, datasetId as text) =>\n            let\n                apiCall =\n                    Json.Document(\n                        Web.Contents(\n                            \"https://api.powerbi.com/v1.0/myorg/admin\",\n                            [\n                                RelativePath =\n                                    \"datasets/\" & datasetId & \"/refreshes\",\n                                Headers = [\n                                    #\"Content-Type\" = \"application/json\",\n                                    Authorization = generatedToken\n                                ]\n                            ]\n                        )\n                    )\n            in\n                #table(\n                    type table [\n                        requestId = text,\n                        id = text,\n                        refreshType = text,\n                        startTime = datetime,\n                        endTime = datetime,\n                        status = text,\n                        refreshInSeconds = number\n                    ],\n                    List.Transform(\n                        apiCall[value],\n                        each\n                            let\n                                stTime = DateTime.From(_[startTime]?),\n                                enTime = DateTime.From(_[endTime]?),\n                                durationOfRefresh =\n                                    if stTime = null or enTime = null then\n                                        null\n                                    else\n                                        Duration.TotalSeconds(enTime - stTime)\n                            in\n                                {\n                                    _[requestId]?,\n                                    _[id]?,\n                                    _[refreshType]?,\n                                    stTime,\n                                    enTime,\n                                    _[status]?,\n                                    durationOfRefresh\n                                }\n                    )\n                ),\n    documentation = [\n        Documentation.Name = \" get-DatasetRefreshHistory.pq \",\n        Documentation.Description = \" Get the refresh history of a dataset \",\n        Documentation.Source = \"https://www.jaknapowerbi.cz\",\n        Documentation.Version = \" 1.0 \",\n        Documentation.Author = \" Štěpán Rešl \"\n    ]\nin\n    Value.ReplaceType(\n        output,\n        Value.ReplaceMetadata(\n            Value.Type(output),\n            documentation\n        )\n    )\nin\n    Source;\r\nshared TenantID = \"aaa\" meta [IsParameterQuery = true, IsParameterQueryRequired = true, Type = type text];\r\nshared ClientID = \"ccc\" meta [IsParameterQuery = true, IsParameterQueryRequired = true, Type = type text];\r\nshared ClientSecret = \"bbb\" meta [IsParameterQuery = true, IsParameterQueryRequired = true, Type = type text];\r\n"
+    },
+    "annotations": [
+        {
+            "name": "pbi:QueryGroups",
+            "value": "[{\"id\":\"dccfa199-76b4-4d25-93df-9ada689344b1\",\"name\":\"Functions\",\"description\":\"\",\"parentId\":null,\"order\":0},{\"id\":\"049bbdbf-b41f-49d7-bd95-59695217d01d\",\"name\":\"Token\",\"description\":\"\",\"parentId\":null,\"order\":1},{\"id\":\"5817561b-5b90-4d5a-87f2-e31d1edc006f\",\"name\":\"Outputs\",\"description\":\"\",\"parentId\":null,\"order\":2},{\"id\":\"36e01dff-48d8-49b8-91c6-3b055548b9d0\",\"name\":\"Parameters\",\"description\":\"\",\"parentId\":null,\"order\":3}]"
+        }
+    ],
+    "entities": [
+        {
+            "$type": "LocalEntity",
+            "name": "output",
+            "description": "",
+            "pbi:refreshPolicy": {
+                "$type": "FullRefreshPolicy",
+                "location": "output.csv"
+            },
+            "attributes": [
+                {
+                    "name": "id",
+                    "dataType": "string"
+                },
+                {
+                    "name": "name",
+                    "dataType": "string"
+                },
+                {
+                    "name": "addRowsAPIEnabled",
+                    "dataType": "boolean"
+                },
+                {
+                    "name": "configuredBy",
+                    "dataType": "string"
+                },
+                {
+                    "name": "isRefreshable",
+                    "dataType": "boolean"
+                },
+                {
+                    "name": "isEffectiveIdentityRequired",
+                    "dataType": "boolean"
+                },
+                {
+                    "name": "isEffectiveIdentityRolesRequired",
+                    "dataType": "boolean"
+                },
+                {
+                    "name": "isOnPremGatewayRequired",
+                    "dataType": "string"
+                },
+                {
+                    "name": "webUrl",
+                    "dataType": "string"
+                },
+                {
+                    "name": "targetStorageMode",
+                    "dataType": "string"
+                },
+                {
+                    "name": "createdDate",
+                    "dataType": "dateTime"
+                },
+                {
+                    "name": "createReportEmbedURL",
+                    "dataType": "string"
+                },
+                {
+                    "name": "qnaEmbedURL",
+                    "dataType": "string"
+                }
+            ]
+        }
+    ]
+}
