@@ -3,7 +3,9 @@
 ![Architecture Schema](https://media-exp1.licdn.com/dms/image/C5612AQGBPfa1DBZcSw/article-cover_image-shrink_720_1280/0/1642327777393?e=1658361600&v=beta&t=-udcin7FDYD9ApLe3kVGP3BfC5oqCVEdPw06M-EGe1I)
 
 </br>
+
 [My original post from LinkedIn](https://www.linkedin.com/pulse/querying-power-bi-datasets-dax-through-admin-api-%C5%A1t%C4%9Bp%C3%A1n-re%C5%A1l/)
+
 </br>
 
 At the end of last year, a new option appeared in the Power BI REST API (Admin), which allows sending DAX queries against a specific dataset. The JSON with the response then returns up to the 100,000 table rows. This allows you to use DAX queries through Power BI REST API in several exciting scenarios. Here I prepared one ... 
@@ -103,7 +105,7 @@ The call is made against the following address "https://api.powerbi.com/v1.0/myo
 
 I will parse the obtained answer again. Since Power Automate always sees only two levels of immersion, so in order to get directly to the data, it is necessary to make the first Apply to each, to which we can pass the second level or "tables." It automatically produces the first level of "results" on top of each other. I can call the Post Adaptive card in a chat or channel action in the second level. Here comes the time for creativity. The adaptive card may look different. But if you would like to be inspired, there is a public library.
 
->> [https://adaptivecards.io/samples/SportingEvent.html](https://adaptivecards.io/samples/SportingEvent.html)
+> [https://adaptivecards.io/samples/SportingEvent.html](https://adaptivecards.io/samples/SportingEvent.html)
 
 I was also inspired here, and I modified the card used in the library to display the match results. Now shows the personalized results of the learning application.
 
