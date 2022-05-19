@@ -60,7 +60,8 @@ We miss the last important information to query directly into the verification t
 ![Generating OAuth2 Token Power BI REST API in Power Automate](https://media-exp1.licdn.com/dms/image/C5612AQFzUjQZp66HXA/article-inline_image-shrink_1500_2232/0/1642325787750?e=1658361600&v=beta&t=3UjCHFHHP3au_XNykEz5wUjt6d1-oTRzbVEbIzfd_6A)
 
 We parse the obtained answer using the classic Parse JSON method, and we get something that looks something like this.
-</br><code>
+</br> </br>
+<code>
 {
   "token_type": "Bearer",
   "expires_in": "3599",
@@ -70,11 +71,14 @@ We parse the obtained answer using the classic Parse JSON method, and we get som
   "resource": "https://analysis.windows.net/powerbi/api",
   "access_token": "x........................x"
 }
-</code></br>
+</code>
+</br>
 
 Combining the obtained token_type and access_token will give us the exact key that we can use for Authorization to query the Dataset. Please note in advance that the life of this token is limited. So don't try to make many calls on one token.
 
-</br><code>concat(body('tokenReciever')?['token_type'],concat(' ',body('tokenReciever')?['access_token']))</code></br>
+</br>
+<code>concat(body('tokenReciever')?['token_type'],concat(' ',body('tokenReciever')?['access_token']))</code>
+</br>
 
 The call is made against the following address "https://api.powerbi.com/v1.0/myorg/datasets/{datasetId}/executeQueries", where we insert the obtained token in the header and the query we requested in the body. Here, in this case, I'm getting data for one specific table, so EVALUATE {tableName} is enough for me.
 
