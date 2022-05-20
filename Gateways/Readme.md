@@ -14,7 +14,7 @@ Shortly? YES! App setting you need to go to Authentication -> Platform configura
 1) By [Create URL to user Login](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/main/Gateways/Build%20Initial%20Call%20URL/get-InitialCallURLToUserToken.pq) function, you will receive a URL that you will need to put into your browser.
 2) After login / If you already were logged in browser URL, you will find a new one that will start with <code>localhost:8080</code>.
 ![Returned URL to localhost](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/main/src/img/Returned%20URL%20to%20localhost.png)
-3) You can extract the needed code from this returned URL by [Extract code](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/main/src/img/get-CodeFromURL.pq) function.
+3) You can extract the needed code from this returned URL by [Extract code](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/main/Gateways/Extract%20Code%20From%20URL/get-CodeFromURL.pq) function.
 4) Now you need to get <code>Refresh Token</code>. To get this type of token, you will need an app to call APIs and handle redirections. I recommend [Postman](https://www.postman.com/) App.
 5) In Postman you need to import this [cURL](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/main/Gateways/cURL%20To%20Exchange%20Code%20To%20Refresh%20Token/cURL_POST_MSFT_LOGIN). And import change all "<>" parameters for requested values. (Dont forget to change the one in URL also!)
 6) In JSON response, you will find <code>Refresh Token</code> that you need to receive your [UserToken](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/main/Gateways/Get%20User%20Token/get-UserToken.pq).
