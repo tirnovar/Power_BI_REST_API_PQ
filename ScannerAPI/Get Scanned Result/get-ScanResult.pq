@@ -27,7 +27,9 @@ let
                         reports = list,
                         dashboards = list,
                         datasets = list,
-                        dataflows = list
+                        dataflows = list,
+                        datamarts = list,
+                        users = list
                     ],
                     List.Transform(
                         apiCall[workspaces],
@@ -42,7 +44,9 @@ let
                                 _[reports]?,
                                 _[dashboards]?,
                                 _[datasets]?,
-                                _[dataflows]?
+                                _[dataflows]?,
+                                _[datamarts]?,
+                                _[users]?
                             }
                     )
                 ),
