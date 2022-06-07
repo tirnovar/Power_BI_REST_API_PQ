@@ -2,8 +2,8 @@ let
     output =
         (generatedToken as text, scanId as text) =>
             let
-                status = get-ScanStatus(generatedToken, scanId),
-                result = if status[status]{0} = "Succeeded" then get-ScanResult(generatedToken, scanId) else "Scan is still not finished. Please try again later."
+                status = #"get-ScanStatus"(generatedToken, scanId),
+                result = if status[status]{0} = "Succeeded" then #"get-ScanResult"(generatedToken, scanId) else "Scan is still not finished. Please try again later."
             in
                 result,
     documentation = [
