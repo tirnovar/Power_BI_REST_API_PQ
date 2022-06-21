@@ -8,8 +8,7 @@ let
                             "https://api.powerbi.com/v1.0/myorg/",
                             [
                                 RelativePath =
-                                    "admin/workspaces/getInfo?l,
-?lineage=True&datasourceDetails=True&datasetSchema=True&datasetExpressions=True&getArtifactUsers=True",
+                                    "admin/workspaces/getInfo?lineage=True&datasourceDetails=True&datasetSchema=True&datasetExpressions=True&getArtifactUsers=True",
                                 Headers = [
                                     #"Content-Type" = "application/json",
                                     Authorization = generatedToken
