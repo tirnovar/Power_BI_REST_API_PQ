@@ -68,8 +68,8 @@ let
                     )
                 ),
     documentation = [
-        Documentation.Name = " get-LastDatasetRefreshErrorByLast10Refreshes.pq ",
-        Documentation.Description = " Get the newest Error on refresh dataset by last 10 refreshes ",
+        Documentation.Name = " get-Refreshables.pq ",
+        Documentation.Description = " Get refreshable datasets ",
         Documentation.Source = "https://www.jaknapowerbi.cz",
         Documentation.Version = " 1.0 ",
         Documentation.Author = " Štěpán Rešl "
