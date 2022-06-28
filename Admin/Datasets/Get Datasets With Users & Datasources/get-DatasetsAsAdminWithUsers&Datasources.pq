@@ -53,8 +53,8 @@ let
                                 _[createReportEmbedURL]?,
                                 _[qnaEmbedURL]?,
                                 _[upstreamDatasets]?,
-                                get-DatasetUsersAsAdmin(generatedToken,_[id]),
-                                get-DatasourcesOfDatasetAsAdmin(generatedToken,_[id])
+                                #"get-DatasetUsersAsAdmin"(generatedToken,_[id]),
+                                #"get-DatasourcesOfDatasetAsAdmin"(generatedToken,_[id])
                             }
                     )
                 ),
