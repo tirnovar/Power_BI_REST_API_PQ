@@ -65,7 +65,13 @@ let
                     ),
                 convertor = List.RemoveNulls(List.Combine(generator))
             in
-                convertor,
+                #table(
+                    type table [content = record],
+                    List.Transform(convertor, each
+                        {
+                            _
+                        })
+                ),
     documentation = [
         Documentation.Name = " get-ActivityEvents.pq ",
         Documentation.Description = " Get All activity events from selected date ",

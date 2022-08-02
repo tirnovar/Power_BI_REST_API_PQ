@@ -80,7 +80,16 @@ let
                     ),
                 listOutputConvertor = List.RemoveNulls(List.Combine(transformator))
             in
-                listOutputConvertor,
+                #table(
+                    type table [content = record],
+                    List.Transform(
+                        listOutputConvertor,
+                        each
+                            {
+                                _
+                            }
+                    )
+                ),
     documentation = [
         Documentation.Name = " get-ActivityEvents.pq ",
         Documentation.Description = " Get All activity events from selected date ",
