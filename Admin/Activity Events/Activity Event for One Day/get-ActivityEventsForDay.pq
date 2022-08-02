@@ -2,8 +2,20 @@ let
     output =
         (generatedToken as text, extractionDate as date) =>
             let
-                startDateTimeVariable = "'"&Date.ToText(extractionDate, "yyyy-MM-ddT00:00:00.000Z")&"'",
-                endDateTimeVariable = "'"&Date.ToText(extractionDate, "yyyy-MM-ddT23:59:59.999Z")&"'",
+                startDateTimeVariable =
+                    "'"
+                    & Date.ToText(
+                        extractionDate,
+                        "yyyy-MM-ddT00:00:00.000Z"
+                    )
+                    & "'",
+                endDateTimeVariable =
+                    "'"
+                    & Date.ToText(
+                        extractionDate,
+                        "yyyy-MM-ddT23:59:59.999Z"
+                    )
+                    & "'",
                 apiCall =
                     Json.Document(
                         Web.Contents(
