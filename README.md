@@ -2,6 +2,9 @@
 
 [![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/%C5%A1t%C4%9Bp%C3%A1n-re%C5%A1l-464084152/) [![Twitter](https://img.shields.io/badge/twitter-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white)](https://twitter.com/tpnRel1)
 
+## Custom Connector
+[Custom Connector for Power BI REST API](https://github.com/tirnovar/Power-BI-Admin-REST-API-Connector)
+
 ## Authentication Functions:
 Method | Name | Description | Requirements
 ------ | ---- | ----------- | ------------
@@ -45,7 +48,7 @@ Get | [Available Features](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob
 Get | [Links Shared To Whole Organization](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/main/Admin/Widely%20Shared%20Artifacts/Links%20Shared%20To%20Whole%20Organization/get-LinksSharedToWholeOrganization.pq) | Get the links shared to the whole organization | [PBI - Bearer Token](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/main/Power%20BI%20Service%20Token/get-BearerToken.pq) | 200 calls per hour
 Get | [Published To Web](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/main/Admin/Widely%20Shared%20Artifacts/Published%20To%20Web/get-PublishedToWeb.pq) | Get all reports that are published to web | [PBI - Bearer Token](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/main/Power%20BI%20Service%20Token/get-BearerToken.pq) | 200 calls per hour
 Get | [Activity Events for One Day](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/main/Admin/Activity%20Events/Activity%20Event%20for%20One%20Day/get-ActivityEventsForDay.pq) | Get All Activity Events for one selected Day | [PBI - Bearer Token](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/main/Power%20BI%20Service%20Token/get-BearerToken.pq)  | 200 calls per hour (Not working in German Tenant) 
-Get | [Activity Events from Period](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/main/Admin/Activity%20Events/Activity%20Events%20for%20selected%20Range/get-ActivityEventsForPeriod.pq) | Get All Activity Events from period | [PBI - Bearer Token](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/main/Power%20BI%20Service%20Token/get-BearerToken.pq)  | 200 calls per hour (Not working in German Tenant) 
+Get | [Activity Events from Period](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/main/Admin/Activity%20Events/Activity%20Events%20for%20selected%20Range/get-ActivityEventsForPeriod.pq) | Get All Activity Events from period | [PBI - Bearer Token](https://github.com/tirnovar/Power_BI_REST_API_PQ/blob/main/Power%20BI%20Service%20Token/get-BearerToken.pq)  | 200 calls per hour (Not working in German Tenant) and MAX -30 DAYS BACK
 
 ### API Permissions: InformationProtectionPolicy.Read.All (GraphAPI)
 Method | Name | Description | Requirements
